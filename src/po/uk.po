@@ -1,0 +1,269 @@
+# Ukrainian translation to passwd.
+# Copyright (C) Free Software Foundation
+# This file is distributed under the same license as the passwd package.
+# Maxim Dziumanenko <dziumanenko@gmail.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: passwd 0.73\n"
+"Report-Msgid-Bugs-To: http://bugzilla.redhat.com/\n"
+"POT-Creation-Date: 2009-02-11 15:00+0100\n"
+"PO-Revision-Date: 2007-01-23 14:58+0300\n"
+"Last-Translator: Maxim V. Dziumanenko <dziumanenko@softprom.kiev.ua>\n"
+"Language-Team: Ukrainian <uk@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: libuser.c:88
+#, c-format
+msgid "%s: libuser initialization error:"
+msgstr "%s: помилка ініціализації libuser:"
+
+#: libuser.c:165
+msgid "Warning: unlocked password would be empty."
+msgstr "Попередження: розблокований пароль буде порожнім."
+
+#: libuser.c:279
+msgid "Corrupted passwd entry."
+msgstr "Пошкоджений запис у passwd."
+
+#: libuser.c:296
+msgid "Empty password."
+msgstr "Порожній пароль."
+
+#: libuser.c:299
+msgid "Password locked."
+msgstr "Пароль заблоковано."
+
+#: libuser.c:303
+msgid "Password set, MD5 crypt."
+msgstr "Пароль заданий, шифр MD5."
+
+#: libuser.c:306
+msgid "Password set, blowfish crypt."
+msgstr "Пароль заданий, шифр blowfish."
+
+#: libuser.c:309
+#, fuzzy
+msgid "Password set, SHA256 crypt."
+msgstr "Пароль заданий, шифр MD5."
+
+#: libuser.c:312
+#, fuzzy
+msgid "Password set, SHA512 crypt."
+msgstr "Пароль заданий, шифр MD5."
+
+#: libuser.c:314
+msgid "Password set, unknown crypt variant."
+msgstr "Пароль заданий, шифр невідомий."
+
+#: libuser.c:317
+msgid "Alternate authentication scheme in use."
+msgstr "Використовується альтернативна схема перевірки автентичності."
+
+#: libuser.c:322
+msgid "Password set, DES crypt."
+msgstr "Пароль заданий, шифр DES."
+
+#: libuser.c:336
+#, c-format
+msgid "No password set.\n"
+msgstr "Пароль не заданий.\n"
+
+#: libuser.c:340
+#, c-format
+msgid "Unknown user.\n"
+msgstr "Невідомий користувач.\n"
+
+#: libuser.c:435
+#, c-format
+msgid "%s: user account has no support for password aging.\n"
+msgstr "%s: обліковий запис не підтримує закінчення терміну дії паролю.\n"
+
+#: passwd.c:156
+msgid "keep non-expired authentication tokens"
+msgstr "зберегти не застарілі ознаки перевірки автентичності (паролі)"
+
+#: passwd.c:158
+msgid "delete the password for the named account (root only)"
+msgstr "видалити пароль для облікового рахунку (дозволено лише root)"
+
+#: passwd.c:160
+msgid "lock the named account (root only)"
+msgstr "заблокувати обліковий запис (дозволено лише користувачу root)"
+
+#: passwd.c:162
+msgid "unlock the named account (root only)"
+msgstr "розблокувати обліковий запис (дозволено лише користувачу root)"
+
+#: passwd.c:164
+msgid "force operation"
+msgstr "примусове виконання"
+
+#: passwd.c:166
+msgid "maximum password lifetime (root only)"
+msgstr "максимальний термін дії паролю (дозволено лише користувачу root)"
+
+#: passwd.c:168
+msgid "minimum password lifetime (root only)"
+msgstr "мінімальний термін дії паролю (дозволено лише користувачу root)"
+
+#: passwd.c:170
+msgid ""
+"number of days warning users receives before password expiration (root only)"
+msgstr ""
+"за скільки днів до дати закінчення терміну дії паролю почати попереджувати "
+"користувача (дозволено лише користувачу root)"
+
+#: passwd.c:173
+msgid ""
+"number of days after password expiration when an account becomes disabled "
+"(root only)"
+msgstr ""
+"через скільки днів після закінчення терміну дії паролю блокувати обліковий "
+"запис (дозволено лише користувачу root)"
+
+#: passwd.c:176
+msgid "report password status on the named account (root only)"
+msgstr ""
+"зберегти стан паролю для облікового запису (дозволено лише користувачу root)"
+
+#: passwd.c:178
+msgid "read new tokens from stdin (root only)"
+msgstr ""
+"прочитати нове значення зі стандартного потоку вводу (дозволено лише "
+"користувачу root)"
+
+#: passwd.c:185
+msgid "[OPTION...] <accountName>"
+msgstr "[ПАРАМЕТРИ...] <обліковий_запис>"
+
+#: passwd.c:188
+#, c-format
+msgid "%s: bad argument %s: %s\n"
+msgstr "%s: неправильний аргумент %s: %s\n"
+
+#: passwd.c:246
+#, c-format
+msgid "%s: Only one of -l, -u, -d, -S may be specified.\n"
+msgstr "%s: Допускається вказувати лише один з параметрів: -l, -u, -d чи -S.\n"
+
+#: passwd.c:255
+#, c-format
+msgid "%s: Cannot mix one of -l, -u, -d, -S and one of -i, -n, -w, -x.\n"
+msgstr "%s: Не допускається змішувати ключі -l, -u, -d, -S и -i, -n, -w, -x.\n"
+
+#: passwd.c:279
+#, c-format
+msgid "Only root can do that.\n"
+msgstr "Операція дозволена лише користувачу root.\n"
+
+#: passwd.c:292
+#, c-format
+msgid "%s: Only root can specify a user name.\n"
+msgstr "%s: Лише root може вказувати назву облікового запису.\n"
+
+#: passwd.c:301
+#, c-format
+msgid "%s: The user name supplied is too long.\n"
+msgstr "%s: Вказана назва користувача надто довга.\n"
+
+#: passwd.c:311
+#, c-format
+msgid "%s: Only one user name may be specified.\n"
+msgstr "%s: Допускається вказувати лише одну назву.\n"
+
+#: passwd.c:321
+#, c-format
+msgid "%s: This option requires a user name.\n"
+msgstr "%s: Для цього параметра необхідне ім'я користувача.\n"
+
+#: passwd.c:332
+#, c-format
+msgid "%s: Can not identify you!\n"
+msgstr "%s: Не вдається вас ідентифікувати!\n"
+
+#: passwd.c:341 passwd.c:376
+#, c-format
+msgid "%s: Unknown user name '%s'.\n"
+msgstr "%s: Невідоме ім'я '%s'.\n"
+
+#: passwd.c:393
+#, c-format
+msgid "%s: %s is not authorized to change the password of %s\n"
+msgstr "%s: %s не дозволяється міняти пароль для %s\n"
+
+#: passwd.c:406
+#, c-format
+msgid "Locking password for user %s.\n"
+msgstr "Блокується пароль для користувача %s.\n"
+
+#: passwd.c:410 passwd.c:422 passwd.c:436 passwd.c:456
+msgid "Success"
+msgstr "Успішно виконано"
+
+#: passwd.c:410 passwd.c:425
+msgid "Error (password not set?)"
+msgstr "Помилка (пароль не заданий?)"
+
+#: passwd.c:418
+#, c-format
+msgid "Unlocking password for user %s.\n"
+msgstr "Знімається блокування паролю для користувача %s.\n"
+
+#: passwd.c:424
+msgid "Unsafe operation (use -f to force)"
+msgstr "Операція небезпечна (використовуйте -f для примусового виконання)"
+
+#: passwd.c:433
+#, c-format
+msgid "Removing password for user %s.\n"
+msgstr "Видаляється пароль для користувача %s.\n"
+
+#: passwd.c:436 passwd.c:456
+msgid "Error"
+msgstr "Помилка"
+
+#: passwd.c:453
+#, c-format
+msgid "Adjusting aging data for user %s.\n"
+msgstr "Встановлюються параметри закінчення терміну дії для користувача %s.\n"
+
+#: passwd.c:469
+#, c-format
+msgid "Changing password for user %s.\n"
+msgstr "Заміна паролю для користувача %s.\n"
+
+#: passwd.c:481
+#, c-format
+msgid "%s: error reading from stdin: %s\n"
+msgstr "%s: помилка читання зі стандартного потоку вводу: %s\n"
+
+#: passwd.c:498
+#, c-format
+msgid "%s: unable to start pam: %s\n"
+msgstr "%s: небезпечно запускати pam: %s\n"
+
+#: passwd.c:511
+#, c-format
+msgid "%s: unable to set tty for pam: %s\n"
+msgstr "%s: не вдається задати tty для pam: %s\n"
+
+#: passwd.c:522
+#, c-format
+msgid "%s: unable to set failure delay: %s\n"
+msgstr "%s: не вдається вказати затримку при помилці: %s\n"
+
+#: passwd.c:540
+#, c-format
+msgid "%s: expired authentication tokens updated successfully.\n"
+msgstr ""
+"%s: успішно оновлено застарілу ознаку перевірки автентичності (пароль).\n"
+
+#: passwd.c:546
+#, c-format
+msgid "%s: all authentication tokens updated successfully.\n"
+msgstr "%s: всі ознаки перевірки автентичності (паролі) успішно оновлені.\n"

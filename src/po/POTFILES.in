@@ -1,0 +1,6 @@
+# List of source files which contain translatable strings.
+libuser.c
+passwd.c
+pwdb.c
+pwdstat.c
+selinux_utils.c

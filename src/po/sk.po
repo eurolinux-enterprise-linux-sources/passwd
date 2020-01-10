@@ -1,0 +1,264 @@
+# Slovak translations for passwd package.
+# Copyright (C) 2006 Red Hat, Inc.
+# This file is distributed under the same license as the passwd package.
+# Automatically generated, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: passwd 0.73\n"
+"Report-Msgid-Bugs-To: http://bugzilla.redhat.com/\n"
+"POT-Creation-Date: 2009-02-11 15:00+0100\n"
+"PO-Revision-Date: 2007-01-25 14:22+0100\n"
+"Last-Translator: Mike Karas <zoliqe@gmail.com>\n"
+"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Poedit-Language: Slovak\n"
+"X-Poedit-Country: SLOVAKIA\n"
+
+#: libuser.c:88
+#, c-format
+msgid "%s: libuser initialization error:"
+msgstr "%s: chyba inicializácie libuser:"
+
+#: libuser.c:165
+msgid "Warning: unlocked password would be empty."
+msgstr "Varovanie: odomknuté heslo bude prázdne."
+
+#: libuser.c:279
+msgid "Corrupted passwd entry."
+msgstr "Poškodená položka passwd."
+
+#: libuser.c:296
+msgid "Empty password."
+msgstr "Prázdne heslo."
+
+#: libuser.c:299
+msgid "Password locked."
+msgstr "Heslo zamknuté."
+
+#: libuser.c:303
+msgid "Password set, MD5 crypt."
+msgstr "Heslo nastavené,š ifra MD5."
+
+#: libuser.c:306
+msgid "Password set, blowfish crypt."
+msgstr "Heslo nastavené, šifra blowfish."
+
+#: libuser.c:309
+#, fuzzy
+msgid "Password set, SHA256 crypt."
+msgstr "Heslo nastavené,š ifra MD5."
+
+#: libuser.c:312
+#, fuzzy
+msgid "Password set, SHA512 crypt."
+msgstr "Heslo nastavené,š ifra MD5."
+
+#: libuser.c:314
+msgid "Password set, unknown crypt variant."
+msgstr "Heslo nastavené, neznámy variant šifry."
+
+#: libuser.c:317
+msgid "Alternate authentication scheme in use."
+msgstr "Použitá alternatívna autentifikačná schéma."
+
+#: libuser.c:322
+msgid "Password set, DES crypt."
+msgstr "Heslo nastavené, šifra DES."
+
+#: libuser.c:336
+#, c-format
+msgid "No password set.\n"
+msgstr "Žiadné heslo nebolo nastavené.\n"
+
+#: libuser.c:340
+#, c-format
+msgid "Unknown user.\n"
+msgstr "Neznámy užívateľ.\n"
+
+#: libuser.c:435
+#, c-format
+msgid "%s: user account has no support for password aging.\n"
+msgstr "%s: užívateľské konto nemá podporu pre stárnutie hesla.\n"
+
+#: passwd.c:156
+msgid "keep non-expired authentication tokens"
+msgstr "ponechať nevypršané autentifikačné kľúče"
+
+#: passwd.c:158
+msgid "delete the password for the named account (root only)"
+msgstr "zmazať heslo pre konto named (iba správca)"
+
+#: passwd.c:160
+msgid "lock the named account (root only)"
+msgstr "zamknúť konto named (iba správca)"
+
+#: passwd.c:162
+msgid "unlock the named account (root only)"
+msgstr "odomknúť konto named (iba správca)"
+
+#: passwd.c:164
+msgid "force operation"
+msgstr "vnútiť operáciu"
+
+#: passwd.c:166
+msgid "maximum password lifetime (root only)"
+msgstr "najdlhšia životnosť hesla (iba správca)"
+
+#: passwd.c:168
+msgid "minimum password lifetime (root only)"
+msgstr "najkratšia životnosť hesla (iba správca)"
+
+#: passwd.c:170
+msgid ""
+"number of days warning users receives before password expiration (root only)"
+msgstr ""
+"počet dní pred vypršaním hesla kedy začať varovať užívateľov (iba správca)"
+
+#: passwd.c:173
+msgid ""
+"number of days after password expiration when an account becomes disabled "
+"(root only)"
+msgstr "počet dní po vypršaní hesla kedy bude konto zablokované (iba správca)"
+
+#: passwd.c:176
+msgid "report password status on the named account (root only)"
+msgstr "ohlásiť stav hesla na konte named (iba správca)"
+
+#: passwd.c:178
+msgid "read new tokens from stdin (root only)"
+msgstr "načítať nové kľúče z stdin (iba správca)"
+
+#: passwd.c:185
+msgid "[OPTION...] <accountName>"
+msgstr "[VOĽBA...] <názovKonta>"
+
+#: passwd.c:188
+#, c-format
+msgid "%s: bad argument %s: %s\n"
+msgstr "%s: nesprávny argument %s: %s\n"
+
+#: passwd.c:246
+#, c-format
+msgid "%s: Only one of -l, -u, -d, -S may be specified.\n"
+msgstr "%s: Iba jedno z -l, -u, -d, -S môže byť zadané.\n"
+
+#: passwd.c:255
+#, c-format
+msgid "%s: Cannot mix one of -l, -u, -d, -S and one of -i, -n, -w, -x.\n"
+msgstr ""
+"%s: Nemožno použiť jedno z -l, -u, -d, -S spolu s jedným z -i, -n, -w, -x.\n"
+
+#: passwd.c:279
+#, c-format
+msgid "Only root can do that.\n"
+msgstr "Toto môže vykonať iba správca.\n"
+
+#: passwd.c:292
+#, c-format
+msgid "%s: Only root can specify a user name.\n"
+msgstr "%s: Meno užívateľa smie zadať iba správca.\n"
+
+#: passwd.c:301
+#, c-format
+msgid "%s: The user name supplied is too long.\n"
+msgstr "%s: Zadané meno užívateľa je príliš dlhé.\n"
+
+#: passwd.c:311
+#, c-format
+msgid "%s: Only one user name may be specified.\n"
+msgstr "%s: Môže byť zadané iba jedno meno užívateľa.\n"
+
+#: passwd.c:321
+#, c-format
+msgid "%s: This option requires a user name.\n"
+msgstr "%s: Táto voľba vyžaduje meno užívateľa.\n"
+
+#: passwd.c:332
+#, c-format
+msgid "%s: Can not identify you!\n"
+msgstr "%s: Nemožno vás identifikovať!\n"
+
+#: passwd.c:341 passwd.c:376
+#, c-format
+msgid "%s: Unknown user name '%s'.\n"
+msgstr "%s: Neznáme meno užívateľa '%s'.\n"
+
+#: passwd.c:393
+#, c-format
+msgid "%s: %s is not authorized to change the password of %s\n"
+msgstr "%s: %s nie je autorizovaný pre zmenu hesla %s\n"
+
+#: passwd.c:406
+#, c-format
+msgid "Locking password for user %s.\n"
+msgstr "Zamykanie hesla pre užívateľa %s.\n"
+
+#: passwd.c:410 passwd.c:422 passwd.c:436 passwd.c:456
+msgid "Success"
+msgstr "Úspešné"
+
+#: passwd.c:410 passwd.c:425
+msgid "Error (password not set?)"
+msgstr "Chyba (heslo nie je nastavene?)"
+
+#: passwd.c:418
+#, c-format
+msgid "Unlocking password for user %s.\n"
+msgstr "Odomykanie hesla pre užívateľa %s.\n"
+
+#: passwd.c:424
+msgid "Unsafe operation (use -f to force)"
+msgstr "Nebezpečná operácia (použite -f pre vynútenie)"
+
+#: passwd.c:433
+#, c-format
+msgid "Removing password for user %s.\n"
+msgstr "Odstránenie hesla pre užívateľa %s.\n"
+
+#: passwd.c:436 passwd.c:456
+msgid "Error"
+msgstr "Chyba"
+
+#: passwd.c:453
+#, c-format
+msgid "Adjusting aging data for user %s.\n"
+msgstr "Úprava dát stárnutia hesla pre užívateľa %s.\n"
+
+#: passwd.c:469
+#, c-format
+msgid "Changing password for user %s.\n"
+msgstr "Zmena hesla pre užívateľa %s.\n"
+
+#: passwd.c:481
+#, c-format
+msgid "%s: error reading from stdin: %s\n"
+msgstr "%s: chyba pri čítaní zo vstupu: %s\n"
+
+#: passwd.c:498
+#, c-format
+msgid "%s: unable to start pam: %s\n"
+msgstr "%s: nepodarilo sa spustiť pam: %s\n"
+
+#: passwd.c:511
+#, c-format
+msgid "%s: unable to set tty for pam: %s\n"
+msgstr "%s: nepodarilo sa nastaviť tty pre pam: %s\n"
+
+#: passwd.c:522
+#, c-format
+msgid "%s: unable to set failure delay: %s\n"
+msgstr "%s: nepodarilo sa nastaviť čakanie po zlyhaní: %s\n"
+
+#: passwd.c:540
+#, c-format
+msgid "%s: expired authentication tokens updated successfully.\n"
+msgstr "%s: vypršané autentifikačné kľúče úspešne aktualizované.\n"
+
+#: passwd.c:546
+#, c-format
+msgid "%s: all authentication tokens updated successfully.\n"
+msgstr "%s: všetky autentifikačné kľúče úspešne aktualizované.\n"

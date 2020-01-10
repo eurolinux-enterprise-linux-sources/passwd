@@ -1,0 +1,264 @@
+# Finnish translations for passwd package.
+# Copyright (C) 2006 Red Hat, Inc.
+# This file is distributed under the same license as the passwd package.
+#
+# Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: passwd 0.73\n"
+"Report-Msgid-Bugs-To: http://bugzilla.redhat.com/\n"
+"POT-Creation-Date: 2009-02-11 15:00+0100\n"
+"PO-Revision-Date: 2009-08-30 19:10+0300\n"
+"Last-Translator: Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>\n"
+"Language-Team: Finnish <laatu@lokalisointi.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+
+#: libuser.c:88
+#, c-format
+msgid "%s: libuser initialization error:"
+msgstr "%s: libuser-alustusvirhe:"
+
+#: libuser.c:165
+msgid "Warning: unlocked password would be empty."
+msgstr "Varoitus: avattu salasana olisi tyhjä."
+
+#: libuser.c:279
+msgid "Corrupted passwd entry."
+msgstr "Vioittunut salasanatietue."
+
+#: libuser.c:296
+msgid "Empty password."
+msgstr "Salasana on tyhjä."
+
+#: libuser.c:299
+msgid "Password locked."
+msgstr "Salasana on lukittu."
+
+#: libuser.c:303
+msgid "Password set, MD5 crypt."
+msgstr "Salasana on asetettu, MD5-salaus."
+
+#: libuser.c:306
+msgid "Password set, blowfish crypt."
+msgstr "Salasana on asetettu, blowfish-salaus."
+
+#: libuser.c:309
+msgid "Password set, SHA256 crypt."
+msgstr "Salasana on asetettu, SHA256-salaus."
+
+#: libuser.c:312
+msgid "Password set, SHA512 crypt."
+msgstr "Salasana on asetettu, SHA512-salaus."
+
+#: libuser.c:314
+msgid "Password set, unknown crypt variant."
+msgstr "Salasana asetettu, tuntematon salausvariantti"
+
+#: libuser.c:317
+msgid "Alternate authentication scheme in use."
+msgstr "Vaihtoehtoinen todennusjärjestelmä käytössä."
+
+#: libuser.c:322
+msgid "Password set, DES crypt."
+msgstr "Salasana on asetettu, DES-salaus."
+
+#: libuser.c:336
+#, c-format
+msgid "No password set.\n"
+msgstr "Salasanaa ei ole asetettu.\n"
+
+#: libuser.c:340
+#, c-format
+msgid "Unknown user.\n"
+msgstr "Tuntematon käyttäjä.\n"
+
+#: libuser.c:435
+#, c-format
+msgid "%s: user account has no support for password aging.\n"
+msgstr "%s: käyttäjätili ei ole tue salasanan ikääntymistä.\n"
+
+#: passwd.c:156
+msgid "keep non-expired authentication tokens"
+msgstr "säilytä vanhentumattomat todennuspoletit"
+
+#: passwd.c:158
+msgid "delete the password for the named account (root only)"
+msgstr "poista annetun tunnuksen salasana (vain pääkäyttäjä)"
+
+#: passwd.c:160
+msgid "lock the named account (root only)"
+msgstr "lukitse annettu tunnus (vain pääkäyttäjä)"
+
+#: passwd.c:162
+msgid "unlock the named account (root only)"
+msgstr "avaa annetun tunnuksen lukitus (vain pääkäyttäjä)"
+
+#: passwd.c:164
+msgid "force operation"
+msgstr "pakota toiminto"
+
+#: passwd.c:166
+msgid "maximum password lifetime (root only)"
+msgstr "salasanan suurin elinaika (vain pääkäyttäjä)"
+
+#: passwd.c:168
+msgid "minimum password lifetime (root only)"
+msgstr "salasanan pienin elinaika (vain pääkäyttäjä)"
+
+#: passwd.c:170
+msgid ""
+"number of days warning users receives before password expiration (root only)"
+msgstr ""
+"kuinka monena päivänä ennen salasanan vanhentumista käyttäjää varoitetaan "
+"(vain pääkäyttäjä)"
+
+#: passwd.c:173
+msgid ""
+"number of days after password expiration when an account becomes disabled "
+"(root only)"
+msgstr ""
+"kuinka monta päivää salasanan vanhenemisen jälkeen tunnus poistetaan "
+"käytöstä (vain pääkäyttäjä)"
+
+#: passwd.c:176
+msgid "report password status on the named account (root only)"
+msgstr "näytä annetun tunnuksen salasanan tila (vain pääkäyttäjä)"
+
+#: passwd.c:178
+msgid "read new tokens from stdin (root only)"
+msgstr "lue uudet poletit oletussyötteestä (vain pääkäyttäjä)"
+
+#: passwd.c:185
+msgid "[OPTION...] <accountName>"
+msgstr "[VALITSIN...] <käyttäjätunnus>"
+
+#: passwd.c:188
+#, c-format
+msgid "%s: bad argument %s: %s\n"
+msgstr "%s: virheellinen argumentti %s: %s\n"
+
+#: passwd.c:246
+#, c-format
+msgid "%s: Only one of -l, -u, -d, -S may be specified.\n"
+msgstr "%s: vain yhden valitsimista -l, -u, -d, -S voi määritellä.\n"
+
+#: passwd.c:255
+#, c-format
+msgid "%s: Cannot mix one of -l, -u, -d, -S and one of -i, -n, -w, -x.\n"
+msgstr ""
+"%s: Ei voi sekoittaa jotakin valitsimista -l, -u, -d, -S ja jotakin "
+"valitsimista -i, -n, -w, -x.\n"
+
+#: passwd.c:279
+#, c-format
+msgid "Only root can do that.\n"
+msgstr "Vain pääkäyttäjä voi tehdä tuon.\n"
+
+#: passwd.c:292
+#, c-format
+msgid "%s: Only root can specify a user name.\n"
+msgstr "%s: Vain pääkäyttäjä voi määrätä käyttäjätunnuksen.\n"
+
+#: passwd.c:301
+#, c-format
+msgid "%s: The user name supplied is too long.\n"
+msgstr "%s: Annettu käyttäjänimi on liian pitkä.\n"
+
+#: passwd.c:311
+#, c-format
+msgid "%s: Only one user name may be specified.\n"
+msgstr "%s: Voidaan antaa vain yksi käyttäjänimi.\n"
+
+#: passwd.c:321
+#, c-format
+msgid "%s: This option requires a user name.\n"
+msgstr "%s: Tämä valitsin vaatii käyttäjänimen.\n"
+
+#: passwd.c:332
+#, c-format
+msgid "%s: Can not identify you!\n"
+msgstr "%s: Ei tunnistettu!\n"
+
+#: passwd.c:341 passwd.c:376
+#, c-format
+msgid "%s: Unknown user name '%s'.\n"
+msgstr "%s: tuntematon käyttäjätunnus ”%s”.\n"
+
+#: passwd.c:393
+#, c-format
+msgid "%s: %s is not authorized to change the password of %s\n"
+msgstr "%s: käyttäjällä %s ei ole valtuutusta vaihtaa käyttäjän %s salasanaa\n"
+
+#: passwd.c:406
+#, c-format
+msgid "Locking password for user %s.\n"
+msgstr "Käyttäjän %s salasana lukitaan.\n"
+
+#: passwd.c:410 passwd.c:422 passwd.c:436 passwd.c:456
+msgid "Success"
+msgstr "Onnistui"
+
+#: passwd.c:410 passwd.c:425
+msgid "Error (password not set?)"
+msgstr "Virhe: (salasanaa ei ole asetettu)"
+
+#: passwd.c:418
+#, c-format
+msgid "Unlocking password for user %s.\n"
+msgstr "Avataan käyttäjän %s salasanan lukitus.\n"
+
+#: passwd.c:424
+msgid "Unsafe operation (use -f to force)"
+msgstr "Turvaton toiminto (käytä valitsinta -f pakottaaksesi)"
+
+#: passwd.c:433
+#, c-format
+msgid "Removing password for user %s.\n"
+msgstr "Poistetaan käyttäjän %s salasana.\n"
+
+#: passwd.c:436 passwd.c:456
+msgid "Error"
+msgstr "Virhe"
+
+#: passwd.c:453
+#, c-format
+msgid "Adjusting aging data for user %s.\n"
+msgstr "Säädetään käyttäjän %s vanhenemistietoa.\n"
+
+#: passwd.c:469
+#, c-format
+msgid "Changing password for user %s.\n"
+msgstr "Vaihdetaan käyttäjän %s salasana.\n"
+
+#: passwd.c:481
+#, c-format
+msgid "%s: error reading from stdin: %s\n"
+msgstr "%s: virhe luettaessa oletussyötteestä %s\n"
+
+#: passwd.c:498
+#, c-format
+msgid "%s: unable to start pam: %s\n"
+msgstr "%s: pam:in käynnistäminen epäonnistui: %s\n"
+
+#: passwd.c:511
+#, c-format
+msgid "%s: unable to set tty for pam: %s\n"
+msgstr "%s: ei voida asettaa terminaalia pam:ille: %s\n"
+
+#: passwd.c:522
+#, c-format
+msgid "%s: unable to set failure delay: %s\n"
+msgstr "%s: ei voida asettaa epäonnistumisviivettä: %s\n"
+
+#: passwd.c:540
+#, c-format
+msgid "%s: expired authentication tokens updated successfully.\n"
+msgstr "%s: vanhentuneet todennuspoletit päivitetty.\n"
+
+#: passwd.c:546
+#, c-format
+msgid "%s: all authentication tokens updated successfully.\n"
+msgstr "%s: kaikki todennuspoletit päivitetty.\n"
