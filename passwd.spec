@@ -7,11 +7,12 @@
 Summary: An utility for setting or changing passwords using PAM
 Name: passwd
 Version: 0.77
-Release: 4%{?dist}
+Release: 4%{?dist}.2
 License: BSD or GPLv2+
 Group: System Environment/Base
 URL: http://fedorahosted.org/passwd
 Source: https://fedorahosted.org/releases/p/a/%{name}/%{name}-%{version}.tar.bz2
+Patch1: passwd-0.77-e-option.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires: pam >= 1.0.90, /etc/pam.d/system-auth
 %if %{WITH_SELINUX}
@@ -31,8 +32,11 @@ Modules) library.
 
 %prep
 %setup -q -n %{name}-%{version}
+%patch1 -p 1 -b .e-option
 
 %build
+export RPM_OPT_FLAGS="$RPM_OPT_FLAGS -fPIE -pie -Wl,-z,relro,-z,now"
+export CFLAGS="$RPM_OPT_FLAGS"
 %configure \
 %if %{WITH_SELINUX}
         --with-selinux \
@@ -44,7 +48,7 @@ Modules) library.
 %else
         --without-audit
 %endif
-make DEBUG= RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
+make
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -65,6 +69,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/passwd.1*
 
 %changelog
+* Fri Feb 17 2012 Tomas Mraz <tmraz@redhat.com> 0.77-4.2
+- add -e option to expire the password for user
+- compile the binary with PIE and full RELRO options
+
 * Thu Jan 28 2010 Tomas Mraz <tmraz@redhat.com> 0.77-4
 - add COPYING and other things to doc
 - correct the licence field
