@@ -7,12 +7,14 @@
 Summary: An utility for setting or changing passwords using PAM
 Name: passwd
 Version: 0.77
-Release: 4%{?dist}.2
+Release: 7%{?dist}
 License: BSD or GPLv2+
 Group: System Environment/Base
 URL: http://fedorahosted.org/passwd
 Source: https://fedorahosted.org/releases/p/a/%{name}/%{name}-%{version}.tar.bz2
 Patch1: passwd-0.77-e-option.patch
+# Upstream changeset 41908bb68e4590aa6a5434eb979b23a9f8828011
+Patch2: passwd-0.77-stdin-length.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires: pam >= 1.0.90, /etc/pam.d/system-auth
 %if %{WITH_SELINUX}
@@ -33,6 +35,7 @@ Modules) library.
 %prep
 %setup -q -n %{name}-%{version}
 %patch1 -p 1 -b .e-option
+%patch2 -p1 -b .stdin-length
 
 %build
 export RPM_OPT_FLAGS="$RPM_OPT_FLAGS -fPIE -pie -Wl,-z,relro,-z,now"
@@ -69,7 +72,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/passwd.1*
 
 %changelog
-* Fri Feb 17 2012 Tomas Mraz <tmraz@redhat.com> 0.77-4.2
+* Mon Nov 2 2015 Miloslav Trmač <mitr@redhat.com> - 0.77-7
+- Support passwords up to PAM_MAX_RESP_SIZE - 1 with --stdin
+  Resolves: #1187105
+
+* Fri Feb 17 2012 Tomas Mraz <tmraz@redhat.com> 0.77-6
 - add -e option to expire the password for user
 - compile the binary with PIE and full RELRO options
 
