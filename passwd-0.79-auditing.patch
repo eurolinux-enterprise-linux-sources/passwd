@@ -1,0 +1,157 @@
+diff --git a/passwd.c b/passwd.c
+index 45acf02..27ad6fe 100644
+--- a/passwd.c
++++ b/passwd.c
+@@ -63,7 +63,6 @@
+ #ifdef WITH_AUDIT
+ #include <libaudit.h>
+ #else
+-#define audit_log_user_message(d,ty,m,h,a,t,r) do { ; } while(0) 
+ #define audit_log_acct_message(d,ty,p,o,n,i,h,a,t,r) do { ; } while(0) 
+ static int audit_open(void) { errno = EPROTONOSUPPORT; return -1; } 
+ #endif
+@@ -274,13 +273,10 @@ parse_args(int argc, const char **argv,
+ 	/* The only flag which unprivileged users get to use is -k. */
+ 	if ((passwd_flags & ~PASSWD_KEEP) && 
+ 	    (getuid() != 0)) {
+-		if (passwd_flags & PASSWD_STATUS) {
++		/* Auditing is not needed for displaying status */
++		if (passwd_flags != PASSWD_STATUS) {
+ 			audit_log_acct_message(audit_fd,  AUDIT_USER_CHAUTHTOK,
+-				NULL, "password status display",
+-				NULL, getuid(), NULL, NULL, NULL, 0);
+-		} else {
+-			audit_log_acct_message(audit_fd,  AUDIT_USER_CHAUTHTOK,
+-				NULL, "password attribute change",
++				NULL, "attempted-to-change-password-attribute",
+ 				NULL, getuid(), NULL, NULL, NULL, 0);
+ 		}
+ 		fprintf(stderr, _("Only root can do that.\n"));
+@@ -293,8 +289,8 @@ parse_args(int argc, const char **argv,
+ 		if (getuid() != 0) {
+ 			/* The invoking user was not root. */
+ 			audit_log_acct_message(audit_fd,  AUDIT_USER_CHAUTHTOK,
+-				NULL, "password change", extraArgs[0],
+-				getuid(), NULL, NULL, NULL, 0);
++				NULL, "attempted-to-change-password",
++				extraArgs[0], getuid(), NULL, NULL, NULL, 0);
+ 			fprintf(stderr,
+ 				_("%s: Only root can specify a user name.\n"),
+ 				progname);
+@@ -392,7 +388,7 @@ main(int argc, const char **argv)
+ 		fprintf(stderr, _("%s: SELinux denying access due to security policy.\n"), progname);
+ 		
+ 		audit_log_acct_message(audit_fd,  AUDIT_USER_CHAUTHTOK,
+-			NULL, "change password", NULL, pwd->pw_uid,
++			NULL, "attempted-to-change-password", NULL, pwd->pw_uid,
+ 			NULL, NULL, NULL, 0);
+ 		exit(1);
+ 	}
+@@ -404,8 +400,8 @@ main(int argc, const char **argv)
+ 		printf("%s: %s\n", progname,
+ 		       retval ==
+ 		       0 ? _("Success") : _("Error (password not set?)"));
+-		audit_log_acct_message(audit_fd,  AUDIT_USER_CHAUTHTOK,
+-			NULL, "lock password", NULL, pwd->pw_uid,
++		audit_log_acct_message(audit_fd, AUDIT_ACCT_LOCK,
++			NULL, "locked-password", NULL, pwd->pw_uid,
+ 			NULL, NULL, NULL, retval == 0);
+ 		return retval;
+ 	}
+@@ -419,8 +415,8 @@ main(int argc, const char **argv)
+ 		       retval ==
+ 		       -2 ? _("Unsafe operation (use -f to force)") :
+ 		       _("Error (password not set?)"));
+-		audit_log_acct_message(audit_fd,  AUDIT_USER_CHAUTHTOK,
+-			NULL, "unlock password", NULL, pwd->pw_uid,
++		audit_log_acct_message(audit_fd, AUDIT_ACCT_UNLOCK,
++			NULL, "unlocked-password", NULL, pwd->pw_uid,
+ 			NULL, NULL, NULL, retval == 0);
+ 		return retval;
+ 	}
+@@ -431,8 +427,8 @@ main(int argc, const char **argv)
+ 		printf("%s: %s\n", progname,
+ 		       retval ==
+ 		       0 ? _("Success") : _("Error"));
+-		audit_log_acct_message(audit_fd,  AUDIT_USER_CHAUTHTOK,
+-			NULL, "expire password", NULL, pwd->pw_uid,
++		audit_log_acct_message(audit_fd, AUDIT_USER_MGMT,
++			NULL, "expired-password", NULL, pwd->pw_uid,
+ 			NULL, NULL, NULL, retval == 0);
+ 		return retval;
+ 	}
+@@ -443,16 +439,14 @@ main(int argc, const char **argv)
+ 		printf("%s: %s\n", progname,
+ 		       (retval == 0) ? _("Success") : _("Error"));
+ 		audit_log_acct_message(audit_fd,  AUDIT_USER_CHAUTHTOK,
+-			NULL, "delete password", NULL, pwd->pw_uid,
++			NULL, "deleted-password", NULL, pwd->pw_uid,
+ 			NULL, NULL, NULL, retval == 0);
+ 		return retval;
+ 	}
+ 	/* Display account status. */
+ 	if (passwd_flags & PASSWD_STATUS) {
++		/* Auditing is not needed for displaying status */
+ 		retval = pwdb_display_status(username);
+-		audit_log_acct_message(audit_fd,  AUDIT_USER_CHAUTHTOK,
+-			NULL, "password status displayed for user",
+-			NULL, pwd->pw_uid, NULL, NULL, NULL, retval == 0);
+ 		return retval;
+ 	}
+ 	/* Adjust aging parameters. */
+@@ -462,12 +456,12 @@ main(int argc, const char **argv)
+ 		retval = pwdb_update_aging(username, min, max, warn, inact, -2);
+ 		printf("%s: %s\n", progname,
+ 		       (retval == 0) ? _("Success") : _("Error"));
+-		snprintf(aubuf, sizeof(aubuf), "password aging data updated "
+-				"- acct=%s, uid=%u, min=%li, max=%li,"
+-				" warn=%li, inact=%li", username, 
+-				pwd->pw_uid, min, max, warn, inact);
+-		audit_log_user_message(audit_fd,  AUDIT_USER_CHAUTHTOK,
+-			aubuf, NULL, NULL, NULL, retval == 0);
++		snprintf(aubuf, sizeof(aubuf), "changed-password-aging"
++				" min=%li max=%li warn=%li inact=%li",
++				min, max, warn, inact);
++		audit_log_acct_message(audit_fd,  AUDIT_USER_MGMT,
++			NULL, aubuf, NULL, pwd->pw_uid,
++			NULL, NULL, NULL, retval == 0);
+ 		return retval;
+ 	}
+ 
+@@ -548,33 +542,22 @@ main(int argc, const char **argv)
+ 	}
+ #endif
+ 
+-	/* Go for it. */
++	/* Go for it. Note: pam will send audit event. */
+ 	retval = pam_chauthtok(pamh,
+ 			       (passwd_flags & PASSWD_KEEP) ?
+ 			       PAM_CHANGE_EXPIRED_AUTHTOK : 0);
+ 	if (retval == PAM_SUCCESS) {
+ 		/* We're done.  Tell the invoking user that it worked. */
+ 		retval = pam_end(pamh, PAM_SUCCESS);
+-		if (passwd_flags & PASSWD_KEEP) {
+-			audit_log_acct_message(audit_fd,  AUDIT_USER_CHAUTHTOK,
+-				NULL, "change expired password", NULL,
+-				pwd->pw_uid, NULL, NULL, NULL,
+-				retval == PAM_SUCCESS);
++		if (passwd_flags & PASSWD_KEEP)
+ 			printf(_("%s: expired authentication tokens updated successfully.\n"),
+ 				progname);
+-		} else {
+-			audit_log_acct_message(audit_fd,  AUDIT_USER_CHAUTHTOK,
+-				NULL, "change password", NULL, pwd->pw_uid,
+-				NULL, NULL, NULL, retval == PAM_SUCCESS);
++		else
+ 			printf(_("%s: all authentication tokens updated successfully.\n"),
+ 				progname);
+-		}
+ 		retval = 0;
+ 	} else {
+ 		/* Horrors!  It failed.  Relay the bad news. */
+-		audit_log_acct_message(audit_fd,  AUDIT_USER_CHAUTHTOK,
+-				NULL, "change password", NULL, pwd->pw_uid,
+-				NULL, NULL, NULL, retval == PAM_SUCCESS);
+ 		fprintf(stderr, "%s: %s\n", progname,
+ 			pam_strerror(pamh, retval));
+ 		pam_end(pamh, retval);

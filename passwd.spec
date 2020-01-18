@@ -7,12 +7,18 @@
 Summary: An utility for setting or changing passwords using PAM
 Name: passwd
 Version: 0.79
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: BSD or GPL+
 Group: System Environment/Base
-URL: http://fedorahosted.org/passwd
-Source: https://fedorahosted.org/releases/p/a/%{name}/%{name}-%{version}.tar.bz2
+URL: https://pagure.io/%{name}
+Source: https://releases.pagure.org/%{name}/%{name}-%{version}.tar.bz2
 Patch0: passwd-0.79-translation-updates.patch
+# Backport ca46cac (rhbz#1276570)
+Patch1: passwd-0.79-no-length-limit-stdin-passwords.patch
+# Backport Steve Grubb's patches c461efa^..e2a9bdf (rhbz#1489086, rhbz#1638105)
+Patch2: passwd-0.79-auditing.patch
+# Backport 02d4478 (rhbz#1145256)
+Patch3: passwd-0.79-document-S-option.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires: pam >= 1.0.90, /etc/pam.d/system-auth
 %if %{WITH_SELINUX}
@@ -35,6 +41,9 @@ Modules) library.
 %setup -q -n %{name}-%{version}
 # Remove the (make -C po update-gmo) below when removing the patch.
 %patch0 -p2 -b .translation-updates
+%patch1 -p1 -b .length-limit
+%patch2 -p1 -b .auditing
+%patch3 -p1 -b .doc-S-opt
 
 %build
 %configure \
@@ -77,6 +86,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/passwd.1*
 
 %changelog
+* Fri Mar 22 2019 Jiri Kucera <jkucera@redhat.com> - 0.79-5
+- Backport ca46cac (allow passwords longer than 79 characters)
+  Backport Steve Grubb's patches
+  - stop double auditing, use appropriate record types, update op field in
+    audit events, don't audit status check, fix password aging logging
+  Backport 02d4478 (better document -S option)
+  Fix URL and Source tags
+  Resolves: #1276570, #1489086, #1638105, #1145256, #1472567
+
 * Thu Jan 30 2014 Miloslav Trmač <mitr@redhat.com> - 0.79-4
 - Include updated translations
   Resolves: #1044298
