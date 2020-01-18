@@ -7,11 +7,12 @@
 Summary: An utility for setting or changing passwords using PAM
 Name: passwd
 Version: 0.79
-Release: 1%{?dist}
+Release: 4%{?dist}
 License: BSD or GPL+
 Group: System Environment/Base
 URL: http://fedorahosted.org/passwd
 Source: https://fedorahosted.org/releases/p/a/%{name}/%{name}-%{version}.tar.bz2
+Patch0: passwd-0.79-translation-updates.patch
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires: pam >= 1.0.90, /etc/pam.d/system-auth
 %if %{WITH_SELINUX}
@@ -32,6 +33,8 @@ Modules) library.
 
 %prep
 %setup -q -n %{name}-%{version}
+# Remove the (make -C po update-gmo) below when removing the patch.
+%patch0 -p2 -b .translation-updates
 
 %build
 %configure \
@@ -46,6 +49,8 @@ Modules) library.
         --without-audit
 %endif
 make DEBUG= RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
+# (make -C po all) doesn't update the .gmo files for the patched .po, force it.
+make -C po update-gmo
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -72,6 +77,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/passwd.1*
 
 %changelog
+* Thu Jan 30 2014 Miloslav Trmač <mitr@redhat.com> - 0.79-4
+- Include updated translations
+  Resolves: #1044298
+
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 0.79-3
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 0.79-2
+- Mass rebuild 2013-12-27
+
 * Sat Jun 22 2013 Miloslav Trmač <mitr@redhat.com> - 0.79-1
 - Update to passwd-0.79
   Resolves: #926312, #948790
@@ -188,7 +203,7 @@ rm -rf $RPM_BUILD_ROOT
 - fixed man page #115380
 - added libselinux-devel to BuildPrereq #123750, #119416
 
-* Wed Aug 19 2004 Jindrich Novy <jnovy@redhat.com> 0.68-10
+* Thu Aug 19 2004 Jindrich Novy <jnovy@redhat.com> 0.68-10
 - moved to 0.68-10 to fix problem with RHEL4-Alpha4 #129548
 - updated GNU build scripts and file structure to recent style
 
